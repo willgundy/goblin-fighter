@@ -12,10 +12,8 @@ const defeatedSectionEl = document.querySelector('.defeated');
 const characterSelectEl = document.querySelector('#characterSelect');
 
 // let state
-let userHealth = 100;
-let cpuHealth = 20;
-let userName = '';
-let cpuName = '';
+let userHealth = 10;
+let cpuHealth = 3;
 
 let characterList = [
     { id: 0,
@@ -38,7 +36,7 @@ let characterList = [
         shortname: 'ken' },
     { id: 6,
         name: 'Ryu',
-        shortname: 'ruy' },
+        shortname: 'ryu' },
     { id: 7, 
         name: 'Zangief',
         shortname: 'zangief' },
@@ -48,16 +46,17 @@ let opponentList = [
     { id: 0,
         name: 'E Honda',
         shortname: 'ehonda',
-        health: 20
+        health: 3
     },
     { id: 1,
         name: 'Guile',
         shortname: 'guile',
-        health: 20
+        health: 3
     }
 ];
 
-let activeOpponent = {};
+let defeatedOpponents = [];
+let defeatedOpponentCount = 0;
 
 displayCharacterList();
 displayOpponentList();
@@ -74,25 +73,62 @@ function displayOpponentList() {
     opponentSectionEl.innerHTML = '';
     for (let opponent of opponentList) {
         const opponentOptionEl = renderOpponentCard(opponent);
+        if (opponent.health > 0) {
+            opponentOptionEl.addEventListener('click', () => {
+                const activeCard = document.querySelector('.activeOpponent');
+                if (activeCard !== null) {
+                    activeCard.classList.remove('activeOpponent');
+                }
+                opponentOptionEl.classList.add('activeOpponent');
+                cpuNameEl.textContent = opponent.name;
+                cpuImageEl.src = `assets/${opponent.shortname}-large.png`;
+                cpuImageEl.id = opponent.id;
+                cpuHealthEl.textContent = `Health: ${opponent.health}❤️`;
+                cpuHealth = opponent.health;
+            });
 
-        opponentOptionEl.addEventListener('click', () => {
+            opponentSectionEl.append(opponentOptionEl);
+        } else if (opponent.health <= 0) {
             const activeCard = document.querySelector('.activeOpponent');
             if (activeCard !== null) {
                 activeCard.classList.remove('activeOpponent');
             }
-            opponentOptionEl.classList.add('activeOpponent');
-            cpuNameEl.textContent = opponent.name;
-            cpuImageEl.src = `assets/${opponent.shortname}-large.png`;
-            cpuImageEl.id = opponent.id;
-            cpuHealthEl.textContent = `Health: ${opponent.health}❤️`;
-        });
+            cpuNameEl.textContent = '';
+            cpuImageEl.src = '';
+            cpuImageEl.id = '';
+            cpuHealthEl.textContent = '';
+            const defeatedOpponent = opponentList.splice(opponent.id, 1);
+            defeatedOpponents.push(defeatedOpponent);
+            defeatedOpponentCount++;
+            defeatedSectionEl.append(opponentOptionEl);
+            displayOpponentList();
+        }
 
-        opponentSectionEl.append(opponentOptionEl);
     }
 }
 
 cpuImageEl.addEventListener('click', () => {
-      console.log('hit');
+    if (Math.random() < .75) {
+        cpuHealth--;
+        alert('you hit ' + cpuNameEl.textContent);
+    } else {
+        alert('you tried to hit ' + cpuNameEl.textContent + ' but missed');
+    }
+    //  - possibly decrement player HP
+    if (Math.random() < .33) {
+        userHealth--;
+        alert(cpuNameEl.textContent + ' hit you!');
+    } else {
+        alert(cpuNameEl.textContent + ' tried to hit you but missed!');
+    }
+    userHealthEl.innerHTML = `Health: ${userHealth}❤️`;
+    cpuHealthEl.innerHTML = `Health: ${cpuHealth}❤️`;
+    const index = opponentList.findIndex(opponentList => {
+        return opponentList.id === Number(cpuImageEl.id);
+    });
+    opponentList[index].health = cpuHealth;
+    displayOpponentList();
+
 });
 
 const form = document.querySelector('form');
@@ -101,10 +137,9 @@ form.addEventListener('submit', (e) => {
 
     const data = new FormData(form);
 
-    const opponentName = data.get('characterName');
-
     const opponentId = data.get('characterSelect');
     const opponentShortName = characterList[opponentId].shortname;
+    let opponentName = characterList[opponentId].name;
 
     const newOpponent = createOpponentObject(opponentName, opponentShortName);
 
@@ -118,7 +153,7 @@ function createOpponentObject(opponentName, opponentShortName) {
     return { id: opponentList.length,
         name: opponentName,
         shortname: opponentShortName,
-        health: 20
+        health: 3
     };
 }
 
