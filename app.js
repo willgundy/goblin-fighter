@@ -9,6 +9,7 @@ const opponentSectionEl = document.querySelector('#opponentSection');
 const characterSelectEl = document.querySelector('#characterSelect');
 const defeatedCountEl = document.querySelector('#defeatedCount');
 const defeatedCardsEl = document.querySelector('#defeatedCards');
+const defeatedEl = document.querySelector('.defeated');
 const youAudio = document.querySelector('#youAudio');
 const loseAudio = document.querySelector('#loseAudio');
 const winAudio = document.querySelector('#winAudio');
@@ -253,6 +254,7 @@ function hideGameplay() {
 
 function unhideGameOver() {
     body.style.backgroundImage = `url('assets/game-over.png')`;
+    defeatedEl.classList.add('defeated-gameover');
 }
 
 function displayDefeatedOpponentsandCount() {
