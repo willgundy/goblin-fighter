@@ -14,69 +14,74 @@
 
 <body style="background-image: url('assets/templeHideout.png');">
     <main>
-        <img src="assets/game-over.png" alt="" class="hidden game-over">
-        <div class="container health">
-            <section class="largeColumn nav user">
-                <h3 id="userHealth" class="gameplay-text">Health: 10❤️</h3>
-            </section>
-            <section class="largeColumn nav cpu">
-                <h3 id="cpuHealth" class="gameplay-text"></h3>
-            </section>
-            <section class="smallColumn nav input flex-row flex-space gameplay-text">
-                <h4>Challenge Street Fighter</h4>
-                <div class="column-space smallColumn">
-                    <form action="" class="flex-column">
-                        <label for="characterSelect">
-                            Type:
-                            <select name="characterSelect" id="characterSelect">
-                                <option value="default">Select a Type</option>
-                            </select>
+        <div id="characterSelectScreen" class="flex-column">
+            <h1 class="gameplay-text">Select Your Fighter</h1>
+            <div id="characterCardDiv"></div>
+        </div>  
+        <div id="gameConsole" class="hidden">
+            <div class="container health">
+                <section class="largeColumn nav user">
+                    <h3 id="userHealth" class="gameplay-text">Health: 10❤️</h3>
+                </section>
+                <section class="largeColumn nav cpu">
+                    <h3 id="cpuHealth" class="gameplay-text"></h3>
+                </section>
+                <section class="smallColumn nav input flex-row flex-space gameplay-text">
+                    <h4>Challenge Street Fighter</h4>
+                    <div class="column-space smallColumn">
+                        <form action="" class="flex-column">
+                            <label for="characterSelect">
+                                Type:
+                                <select name="characterSelect" id="characterSelect">
+                                    <option value="default">Select a Type</option>
+                                </select>
+                            </label>
+                            <button id="createCharacterBtn">Create!</button>
+                        </form>
+                        <label for="stadiumSelect">
+                            Stadium: 
+                            <select name="stadiumSelect" id="stadiumSelect"></select>
                         </label>
-                        <button id="createCharacterBtn">Create!</button>
-                    </form>
-                    <label for="stadiumSelect">
-                        Stadium: 
-                        <select name="stadiumSelect" id="stadiumSelect"></select>
-                    </label>
-                </div>
-            </section>
-        </div>
-        <div class="container gameplay">
-            <section class="largeColumn gameplay user flex-column flex-space">
-                <h3 id="userName" class="gameplay-text">Ken</h3>
-                <h4 id="userGameplayNotification" class="gameplay-text"></h4>
-                <img src="assets/ken-large.png" alt="ken" id="userImage" class="gameplayImage">
-            </section>
-            <section class="largeColumn gameplay cpu flex-column flex-space">
-                <h3 id="cpuName" class="gameplay-text"></h3>
-                <h4 id="cpuGameplayNotification" class="gameplay-text"></h4>
-                <img src="" alt="" id="cpuImage" class="gameplayImage">
-            </section>
-            <section id="opponentSection" class="smallColumn gameplay input flex-start">
-                <div class="opponentCard activeOpponent hidden">
-                    <div class="flex-column flex-start">
-                        <p></p> 
-                        <p></p> 
                     </div>
-                    <img src="assets/mbison-small.png" alt="mbison" class="smallImg">
-                </div>
-            </section>
-        </div>
-        <div class="defeated flex-column">
-            <h3 id="defeatedCount">Defeated Street Fighters</h3>
-            <div id="defeatedCards">
-
+                </section>
             </div>
+            <div class="container gameplay">
+                <section class="largeColumn gameplay user flex-column flex-space">
+                    <h3 id="userName" class="gameplay-text">Ken</h3>
+                    <h4 id="userGameplayNotification" class="gameplay-text"></h4>
+                    <img src="assets/ken-large.png" alt="ken" id="userImage" class="gameplayImage">
+                </section>
+                <section class="largeColumn gameplay cpu flex-column flex-space">
+                    <h3 id="cpuName" class="gameplay-text"></h3>
+                    <h4 id="cpuGameplayNotification" class="gameplay-text"></h4>
+                    <img src="" alt="" id="cpuImage" class="gameplayImage">
+                </section>
+                <section id="opponentSection" class="smallColumn gameplay input flex-start">
+                    <div class="opponentCard activeOpponent hidden">
+                        <div class="flex-column flex-start">
+                            <p></p> 
+                            <p></p> 
+                        </div>
+                        <img src="assets/mbison-small.png" alt="mbison" class="smallImg">
+                    </div>
+                </section>
+            </div>
+            <div class="defeated flex-column">
+                <h3 id="defeatedCount">Defeated Street Fighters</h3>
+                <div id="defeatedCards">
+    
+                </div>
+            </div>
+            <audio id="youAudio">
+                <source src="assets/You.mp3" type="audio/mp3">
+            </audio>
+            <audio id="loseAudio">
+                <source src="assets/Lose.mp3" type="audio/mp3">
+            </audio>
+            <audio id="winAudio">
+                <source src="assets/win.wav" type="audio/wav">
+            </audio>
         </div>
-        <audio id="youAudio">
-            <source src="assets/You.mp3" type="audio/mp3">
-        </audio>
-        <audio id="loseAudio">
-            <source src="assets/Lose.mp3" type="audio/mp3">
-        </audio>
-        <audio id="winAudio">
-            <source src="assets/win.wav" type="audio/wav">
-        </audio>
     </main>
     <script type="module" src="./app.js"></script>
 </body>

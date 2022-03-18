@@ -39,3 +39,23 @@ export function renderStadiumOptions(stadium) {
 
     return stadiumOption;
 }
+
+export function renderSelectCharacter(character) {
+    const characterCard = document.createElement('div');
+    characterCard.classList.add('playerCard', 'flex-column');
+    characterCard.id = character.id;
+
+    const characterName = document.createElement('h4');
+    characterName.textContent = character.name;
+
+    const characterImage = document.createElement('img');
+    characterImage.src = `assets/${character.shortname}-small.png`;
+    characterImage.classList.add('selectionImage');
+
+    characterCard.append(characterImage, characterName);
+
+    characterCard.addEventListener('mouseover', function(){characterCard.classList.add('button-hover');});
+    characterCard.addEventListener('mouseout', function(){characterCard.classList.remove('button-hover');});
+
+    return characterCard;
+}

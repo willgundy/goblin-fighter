@@ -1,5 +1,5 @@
 // import functions and grab DOM elements
-import { renderCharacterOptions, renderOpponentCard, renderStadiumOptions } from './render-utils.js';
+import { renderCharacterOptions, renderOpponentCard, renderStadiumOptions, renderSelectCharacter } from './render-utils.js';
 
 const userHealthEl = document.querySelector('#userHealth');
 const cpuHealthEl = document.querySelector('#cpuHealth');
@@ -14,17 +14,22 @@ const loseAudio = document.querySelector('#loseAudio');
 const winAudio = document.querySelector('#winAudio');
 const healthContainers = document.querySelectorAll('.health');
 const gameplayContainers = document.querySelectorAll('.gameplay');
-const gameOverImage = document.querySelector('.game-over');
 const userGameplayNotificationEl = document.querySelector('#userGameplayNotification');
 const cpuGameplayNotificationEl = document.querySelector('#cpuGameplayNotification');
 const stadiumSelectEl = document.querySelector('#stadiumSelect');
 const body = document.querySelector('body');
+const characterSelectScreen = document.querySelector('#characterSelectScreen');
+const characterCardDiv = document.querySelector('#characterCardDiv');
+const gameplayDiv = document.querySelector('#gameConsole');
+const userNameEl = document.querySelector('#userName');
+const userImageEl = document.querySelector('#userImage');
+
 
 // let state
 let userHealth = 10;
 let cpuHealth = 3;
 
-let characterList = [
+const characterList = [
     { id: 0,
         name: 'E Honda',
         shortname: 'ehonda' },
@@ -51,7 +56,7 @@ let characterList = [
         shortname: 'zangief' },
 ];
 
-let stadiumList = [
+const stadiumList = [
     { id: 0,
         name: 'Temple Hideout',
         path: 'assets/templeHideout.png' },
@@ -94,6 +99,37 @@ let defeatedOpponentCount = 0;
 displayCharacterList();
 displayOpponentList();
 displayStadiumList();
+displayCharacterSelectCards();
+
+
+function displayCharacterSelectCards() {
+    for (let character of characterList) {
+        const characterCardEl = renderSelectCharacter(character);
+        characterCardEl.addEventListener('click', () => {
+            //remove character select div
+            characterSelectScreen.classList.add('hidden');
+            //display gamplay console
+            gameplayDiv.classList.remove('hidden');
+            //display the selected character
+        });
+        characterCardEl.addEventListener('click', displayCharacter);
+        characterCardDiv.append(characterCardEl);
+    }
+}
+
+function displayCharacter(e) {
+    console.log(e);
+    const playerChoice = e.path[1].id;
+    console.log(playerChoice);
+    const index = characterList.findIndex(characterList => {
+        return characterList.id === Number(playerChoice);
+    });
+    console.log(index);
+    const userCharacter = characterList[index];
+    console.log(userCharacter);
+    userNameEl.textContent = userCharacter.name;
+    userImageEl.src = `assets/${userCharacter.shortname}-large.png`;
+}
 
 function displayCharacterList() {
     characterSelectEl.innerHTML = '';
@@ -150,6 +186,7 @@ function removeActiveOpponentFromDOM() {
     cpuImageEl.src = '';
     cpuImageEl.id = '';
     cpuHealthEl.textContent = '';
+    cpuGameplayNotificationEl.textContent = '';
 }
 
 
@@ -215,7 +252,6 @@ function hideGameplay() {
 }
 
 function unhideGameOver() {
-    gameOverImage.classList.remove('hidden');
     body.style.backgroundImage = `url('assets/game-over.png')`;
 }
 
