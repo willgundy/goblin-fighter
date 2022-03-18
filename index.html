@@ -16,10 +16,10 @@
     <main>
         <div class="container health">
             <section class="largeColumn nav user">
-                <h3>User Health: 100❤️</h3>
+                <h3 id="userHealth">User Health: 100❤️</h3>
             </section>
             <section class="largeColumn nav cpu">
-                <h3>CPU Health: ❤️</h3>
+                <h3 id="cpuHealth">CPU Health: ❤️</h3>
             </section>
             <section class="smallColumn nav input flex-row flex-space">
                 <h4>Add New CPU</h4>
@@ -40,15 +40,15 @@
         </div>
         <div class="container gameplay">
             <section class="largeColumn gameplay user flex-column flex-space">
-                <h3>Ken</h3>
-                <img src="assets/ken-large.png" alt="ken">
+                <h3 id="userName">Ken</h3>
+                <img src="assets/ken-large.png" alt="ken" id="userImage">
             </section>
             <section class="largeColumn gameplay cpu flex-column flex-space">
-                <h3>M Bison</h3>
-                <img src="assets/mbison.png" alt="mbison">
+                <h3 id="cpuName">M Bison</h3>
+                <img src="" alt="" id="cpuImage">
             </section>
-            <section class="smallColumn gameplay input flex-start">
-                <div class="opponentCard">
+            <section id="opponentSection" class="smallColumn gameplay input flex-start">
+                <div class="opponentCard activeOpponent hidden">
                     <div class="flex-column flex-start">
                         <p>Name: <span>M Bison</span></p> 
                         <p>Health: <span>20❤️</span></p> 

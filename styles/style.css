@@ -124,3 +124,12 @@ p {
     max-width: 10vw;
     justify-content: center;
 }
+
+.activeOpponent {
+    background-color: lightgoldenrodyellow;
+    border: 4px solid goldenrod;
+}
+
+.hidden {
+    display: none;
+}
