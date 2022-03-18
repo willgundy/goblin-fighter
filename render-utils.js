@@ -12,6 +12,7 @@ export function renderOpponentCard(opponent) {
 
     const opponentHealth = document.createElement('p');
     opponentHealth.textContent = getHealthText(opponent.health);
+    opponentHealth.id = `health${opponent.id}`;
 
     const opponentImage = document.createElement('img');
     opponentImage.src = `assets/${opponent.shortname}-small.png`;

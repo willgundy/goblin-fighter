@@ -3,13 +3,12 @@ import { renderCharacterOptions, renderOpponentCard } from './render-utils.js';
 
 const userHealthEl = document.querySelector('#userHealth');
 const cpuHealthEl = document.querySelector('#cpuHealth');
-const userNameEl = document.querySelector('#userName');
 const cpuNameEl = document.querySelector('#cpuName');
-const userImageEl = document.querySelector('#userImage');
 const cpuImageEl = document.querySelector('#cpuImage');
 const opponentSectionEl = document.querySelector('#opponentSection');
-const defeatedSectionEl = document.querySelector('.defeated');
 const characterSelectEl = document.querySelector('#characterSelect');
+const defeatedCountEl = document.querySelector('#defeatedCount');
+const defeatedCardsEl = document.querySelector('#defeatedCards');
 
 // let state
 let userHealth = 10;
@@ -74,45 +73,42 @@ function displayCharacterList() {
 function displayOpponentList() {
     opponentSectionEl.innerHTML = '';
     for (let opponent of opponentList) {
+        console.log(opponent);
         const opponentOptionEl = renderOpponentCard(opponent);
+
         if (opponent.health > 0) {
+
             opponentOptionEl.addEventListener('click', () => {
-                audio.pause();
                 const activeCard = document.querySelector('.activeOpponent');
                 if (activeCard !== null) {
                     activeCard.classList.remove('activeOpponent');
                 }
                 opponentOptionEl.classList.add('activeOpponent');
-                cpuNameEl.textContent = opponent.name;
-                cpuImageEl.src = `assets/${opponent.shortname}-large.png`;
-                cpuImageEl.id = opponent.id;
-                cpuHealthEl.textContent = `Health: ${opponent.health}❤️`;
-                cpuHealth = opponent.health;
-                audio.play();
+                displayActiveOpponent(opponent);
             });
 
             opponentSectionEl.append(opponentOptionEl);
-        } else if (opponent.health <= 0) {
-            const activeCard = document.querySelector('.activeOpponent');
-            if (activeCard !== null) {
-                activeCard.classList.remove('activeOpponent');
-            }
-            cpuNameEl.textContent = '';
-            cpuImageEl.src = '';
-            cpuImageEl.id = '';
-            cpuHealthEl.textContent = '';
-            const index = opponentList.findIndex(opponentList => {
-                return opponentList.id === Number(opponent.id);
-            });
-            const defeatedOpponent = opponentList.splice(index, 1);
-            defeatedOpponents.push(defeatedOpponent);
-            defeatedOpponentCount++;
-            defeatedSectionEl.append(opponentOptionEl);
-            displayOpponentList();
-        }
 
+        } 
     }
 }
+
+function displayActiveOpponent(opponent) {
+    cpuNameEl.textContent = opponent.name;
+    cpuImageEl.src = `assets/${opponent.shortname}-large.png`;
+    cpuImageEl.id = opponent.id;
+    cpuHealth = opponent.health;
+    cpuHealthEl.textContent = getHealthText(cpuHealth);
+}
+
+function removeActiveOpponentFromDOM() {
+    cpuNameEl.textContent = '';
+    cpuImageEl.src = '';
+    cpuImageEl.id = '';
+    cpuHealthEl.textContent = '';
+}
+
+
 
 cpuImageEl.addEventListener('click', () => {
     if (Math.random() < .75) {
@@ -128,15 +124,56 @@ cpuImageEl.addEventListener('click', () => {
     } else {
         alert(cpuNameEl.textContent + ' tried to hit you but missed!');
     }
-    userHealthEl.innerHTML = `Health: ${userHealth}❤️`;
-    cpuHealthEl.innerHTML = `Health: ${cpuHealth}❤️`;
+    updateUserDOM();
+    updateCpuDOM();
+    const index = opponentList.findIndex(opponentList => {
+        return opponentList.id === Number(cpuImageEl.id);
+    });
+    if (cpuHealth <= 0) {
+        removeActiveOpponentFromDOM();
+
+        const defeatedOpponent = splicedOpponentFromArray(index);
+
+        defeatedOpponents.push(defeatedOpponent[0]);
+
+        defeatedOpponentCount++;
+        displayDefeatedOpponentsandCount();
+
+        displayOpponentList();
+    }
+});
+
+function displayDefeatedOpponentsandCount() {
+    defeatedCardsEl.innerHTML = '';
+    for (let opponent of defeatedOpponents) {
+        console.log(opponent);
+        const defeatedOpponentEl = renderOpponentCard(opponent);
+        defeatedCardsEl.append(defeatedOpponentEl);
+    }
+
+    defeatedCountEl.textContent = `Defeated Street Fighters: ${defeatedOpponentCount}`;
+}
+
+function splicedOpponentFromArray(index) {
+    return opponentList.splice(index, 1);
+}
+
+function updateUserDOM() {
+    //update user health
+    userHealthEl.innerHTML = getHealthText(userHealth);
+}
+
+function updateCpuDOM() {
+    //update cpu health
+    cpuHealthEl.innerHTML = getHealthText(cpuHealth);
+    //update array with new health value
     const index = opponentList.findIndex(opponentList => {
         return opponentList.id === Number(cpuImageEl.id);
     });
     opponentList[index].health = cpuHealth;
-    displayOpponentList();
-
-});
+    const opponentHealthEl = document.querySelector(`#health${opponentList[index].id}`);
+    opponentHealthEl.textContent = getHealthText(cpuHealth);
+}
 
 const form = document.querySelector('form');
 form.addEventListener('submit', (e) => {
@@ -157,7 +194,7 @@ form.addEventListener('submit', (e) => {
 });
 
 function createOpponentObject(opponentName, opponentShortName) {
-    return { id: opponentList.length,
+    return { id: opponentList.length + defeatedOpponents.length,
         name: opponentName,
         shortname: opponentShortName,
         health: 3
