@@ -77,6 +77,7 @@ function displayOpponentList() {
         const opponentOptionEl = renderOpponentCard(opponent);
         if (opponent.health > 0) {
             opponentOptionEl.addEventListener('click', () => {
+                audio.pause();
                 const activeCard = document.querySelector('.activeOpponent');
                 if (activeCard !== null) {
                     activeCard.classList.remove('activeOpponent');
