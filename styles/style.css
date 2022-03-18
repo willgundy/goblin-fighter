@@ -94,7 +94,7 @@ select {
     max-width: 70%;
 }
 
-img {
+.gameplayImage {
     max-height: 40vh;
 }
 
@@ -104,6 +104,11 @@ img {
 
 .flex-start {
     align-content: flex-start;
+}
+
+.game-over {
+    height: 90vh;
+    width: 100vw;
 }
 
 .opponentCard {

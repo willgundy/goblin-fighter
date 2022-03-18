@@ -9,12 +9,15 @@ const opponentSectionEl = document.querySelector('#opponentSection');
 const characterSelectEl = document.querySelector('#characterSelect');
 const defeatedCountEl = document.querySelector('#defeatedCount');
 const defeatedCardsEl = document.querySelector('#defeatedCards');
+const youAudio = document.querySelector('#youAudio');
+const loseAudio = document.querySelector('#loseAudio');
+const healthContainers = document.querySelectorAll('.health');
+const gameplayContainers = document.querySelectorAll('.gameplay');
+const gameOverImage = document.querySelector('.game-over');
 
 // let state
 let userHealth = 10;
 let cpuHealth = 3;
-
-let audio = new Audio('assets/playerSelect.mp3');
 
 let characterList = [
     { id: 0,
@@ -141,12 +144,32 @@ cpuImageEl.addEventListener('click', () => {
 
         displayOpponentList();
     }
+    if (userHealth <= 0) {
+        hideGameplay();
+        unhideGameOver();
+        playYouLoseAudio();
+    }
 });
+
+function playYouLoseAudio() {
+    youAudio.play();
+    youAudio.onended = function() {
+        loseAudio.play();
+    };
+}
+
+function hideGameplay() {
+    gameplayContainers.forEach(container => container.classList.add('hidden'));
+    healthContainers.forEach(container => container.classList.add('hidden'));
+}
+
+function unhideGameOver() {
+    gameOverImage.classList.remove('hidden');
+}
 
 function displayDefeatedOpponentsandCount() {
     defeatedCardsEl.innerHTML = '';
     for (let opponent of defeatedOpponents) {
-        console.log(opponent);
         const defeatedOpponentEl = renderOpponentCard(opponent);
         defeatedCardsEl.append(defeatedOpponentEl);
     }
@@ -190,6 +213,8 @@ form.addEventListener('submit', (e) => {
     opponentList.push(newOpponent);
 
     displayOpponentList();
+
+    removeActiveOpponentFromDOM();
 
 });
 

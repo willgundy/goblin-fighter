@@ -14,6 +14,7 @@
 
 <body>
     <main>
+        <img src="assets/game-over.png" alt="" class="hidden game-over">
         <div class="container health">
             <section class="largeColumn nav user">
                 <h3 id="userHealth">Health: 10❤️</h3>
@@ -22,7 +23,7 @@
                 <h3 id="cpuHealth"></h3>
             </section>
             <section class="smallColumn nav input flex-row flex-space">
-                <h4>Add New CPU</h4>
+                <h4>Challenge Street Fighter</h4>
                 <form action="" class="flex-column">
                     <!-- <label for="characterName">
                         Name:
@@ -41,11 +42,11 @@
         <div class="container gameplay">
             <section class="largeColumn gameplay user flex-column flex-space">
                 <h3 id="userName">Ken</h3>
-                <img src="assets/ken-large.png" alt="ken" id="userImage">
+                <img src="assets/ken-large.png" alt="ken" id="userImage" class="gameplayImage">
             </section>
             <section class="largeColumn gameplay cpu flex-column flex-space">
                 <h3 id="cpuName"></h3>
-                <img src="" alt="" id="cpuImage">
+                <img src="" alt="" id="cpuImage" class="gameplayImage">
             </section>
             <section id="opponentSection" class="smallColumn gameplay input flex-start">
                 <div class="opponentCard activeOpponent hidden">
@@ -57,10 +58,18 @@
                 </div>
             </section>
         </div>
-        <div class="defeated">
+        <div class="defeated flex-column">
             <h3 id="defeatedCount">Defeated Street Fighters</h3>
-            <div id="defeatedCards"></div>
+            <div id="defeatedCards">
+
+            </div>
         </div>
+        <audio id="youAudio">
+            <source src="assets/You.mp3" type="audio/mp3">
+        </audio>
+        <audio id="loseAudio">
+            <source src="assets/Lose.mp3" type="audio/mp3">
+        </audio>
     </main>
     <script type="module" src="./app.js"></script>
 </body>
