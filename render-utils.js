@@ -31,3 +31,11 @@ export function renderCharacterOptions(character) {
 
     return characterOption;
 }
+
+export function renderStadiumOptions(stadium) {
+    const stadiumOption = document.createElement('option');
+    stadiumOption.innerText = stadium.name;
+    stadiumOption.value = stadium.path;
+
+    return stadiumOption;
+}

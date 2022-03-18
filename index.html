@@ -24,29 +24,33 @@
             </section>
             <section class="smallColumn nav input flex-row flex-space">
                 <h4>Challenge Street Fighter</h4>
-                <form action="" class="flex-column">
-                    <!-- <label for="characterName">
-                        Name:
-                        <input type="text" name="characterName">
-                    </label> -->
-                    <label for="characterSelect">
-                        Type:
-                        <select name="characterSelect" id="characterSelect">
-                            <option value="default">Select a Type</option>
-                        </select>
+                <div class="column-space smallColumn">
+                    <form action="" class="flex-column">
+                        <label for="characterSelect">
+                            Type:
+                            <select name="characterSelect" id="characterSelect">
+                                <option value="default">Select a Type</option>
+                            </select>
+                        </label>
+                        <button id="createCharacterBtn">Create!</button>
+                    </form>
+                    <label for="stadiumSelect">
+                        Stadium: 
+                        <select name="stadiumSelect" id="stadiumSelect"></select>
                     </label>
-                    <button id="createCharacterBtn">Create!</button>
-                </form>
+                </div>
             </section>
         </div>
         <div class="container gameplay">
             <section class="largeColumn gameplay user flex-column flex-space">
                 <h3 id="userName">Ken</h3>
                 <img src="assets/ken-large.png" alt="ken" id="userImage" class="gameplayImage">
+                <h4 id="userGameplayNotification"></h4>
             </section>
             <section class="largeColumn gameplay cpu flex-column flex-space">
                 <h3 id="cpuName"></h3>
                 <img src="" alt="" id="cpuImage" class="gameplayImage">
+                <h4 id="cpuGameplayNotification"></h4>
             </section>
             <section id="opponentSection" class="smallColumn gameplay input flex-start">
                 <div class="opponentCard activeOpponent hidden">
@@ -69,6 +73,9 @@
         </audio>
         <audio id="loseAudio">
             <source src="assets/Lose.mp3" type="audio/mp3">
+        </audio>
+        <audio id="winAudio">
+            <source src="assets/win.wav" type="audio/wav">
         </audio>
     </main>
     <script type="module" src="./app.js"></script>

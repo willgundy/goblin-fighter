@@ -1,5 +1,5 @@
 // import functions and grab DOM elements
-import { renderCharacterOptions, renderOpponentCard } from './render-utils.js';
+import { renderCharacterOptions, renderOpponentCard, renderStadiumOptions } from './render-utils.js';
 
 const userHealthEl = document.querySelector('#userHealth');
 const cpuHealthEl = document.querySelector('#cpuHealth');
@@ -11,9 +11,14 @@ const defeatedCountEl = document.querySelector('#defeatedCount');
 const defeatedCardsEl = document.querySelector('#defeatedCards');
 const youAudio = document.querySelector('#youAudio');
 const loseAudio = document.querySelector('#loseAudio');
+const winAudio = document.querySelector('#winAudio');
 const healthContainers = document.querySelectorAll('.health');
 const gameplayContainers = document.querySelectorAll('.gameplay');
 const gameOverImage = document.querySelector('.game-over');
+const userGameplayNotificationEl = document.querySelector('#userGameplayNotification');
+const cpuGameplayNotificationEl = document.querySelector('#cpuGameplayNotification');
+const stadiumSelectEl = document.querySelector('#stadiumSelect');
+const body = document.querySelector('body');
 
 // let state
 let userHealth = 10;
@@ -46,6 +51,30 @@ let characterList = [
         shortname: 'zangief' },
 ];
 
+let stadiumList = [
+    { id: 0,
+        name: 'Spa',
+        path: 'assets/spa.png' },
+    { id: 1,
+        name: 'Temple Hideout',
+        path: 'assets/templeHideout.png' },
+    { id: 2,
+        name: 'Taiping District',
+        path: 'assets/taipingDistrict.png' },
+    { id: 3,
+        name: 'Air Force Base',
+        path: 'assets/airForceBase.png' },
+    { id: 4,
+        name: 'Battle Harbor',
+        path: 'assets/battleHarbor.png' },
+    { id: 5,
+        name: 'Big Factory',
+        path: 'assets/bigFactory.png' },
+    { id: 6,
+        name: 'Amazon River',
+        path: 'assets/amazonRiverBasin.png' }
+];
+
 let opponentList = [
     { id: 0,
         name: 'E Honda',
@@ -64,6 +93,7 @@ let defeatedOpponentCount = 0;
 
 displayCharacterList();
 displayOpponentList();
+displayStadiumList();
 
 function displayCharacterList() {
     characterSelectEl.innerHTML = '';
@@ -73,10 +103,22 @@ function displayCharacterList() {
     }
 }
 
+function displayStadiumList() {
+    stadiumSelectEl.innerHTML = '';
+    for (let stadium of stadiumList) {
+        const stadiumOptionEl = renderStadiumOptions(stadium);
+        stadiumSelectEl.append(stadiumOptionEl);
+    }
+}
+
+stadiumSelectEl.addEventListener('change', () => {
+    body.style.backgroundImage = `url('${stadiumSelectEl.value}')`;
+    console.log(`url('${stadiumSelectEl.value}')`);
+});
+
 function displayOpponentList() {
     opponentSectionEl.innerHTML = '';
     for (let opponent of opponentList) {
-        console.log(opponent);
         const opponentOptionEl = renderOpponentCard(opponent);
 
         if (opponent.health > 0) {
@@ -116,16 +158,16 @@ function removeActiveOpponentFromDOM() {
 cpuImageEl.addEventListener('click', () => {
     if (Math.random() < .75) {
         cpuHealth--;
-        alert('you hit ' + cpuNameEl.textContent);
+        userGameplayNotificationEl.textContent = 'you hit ' + cpuNameEl.textContent + '!';
     } else {
-        alert('you tried to hit ' + cpuNameEl.textContent + ' but missed');
+        userGameplayNotificationEl.textContent = 'you tried to hit ' + cpuNameEl.textContent + ' but missed';
     }
     //  - possibly decrement player HP
     if (Math.random() < .33) {
         userHealth--;
-        alert(cpuNameEl.textContent + ' hit you!');
+        cpuGameplayNotificationEl.textContent = cpuNameEl.textContent + ' hit you!';
     } else {
-        alert(cpuNameEl.textContent + ' tried to hit you but missed!');
+        cpuGameplayNotificationEl.textContent = cpuNameEl.textContent + ' tried to hit you but missed!';
     }
     updateUserDOM();
     updateCpuDOM();
@@ -142,6 +184,9 @@ cpuImageEl.addEventListener('click', () => {
         defeatedOpponentCount++;
         displayDefeatedOpponentsandCount();
 
+        cpuHealthEl.innerHTML = 'Finished them!';
+        playYouWinAudio();
+
         displayOpponentList();
     }
     if (userHealth <= 0) {
@@ -155,6 +200,13 @@ function playYouLoseAudio() {
     youAudio.play();
     youAudio.onended = function() {
         loseAudio.play();
+    };
+}
+
+function playYouWinAudio() {
+    youAudio.play();
+    youAudio.onended = function() {
+        winAudio.play();
     };
 }
 
