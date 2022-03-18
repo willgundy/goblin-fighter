@@ -1,91 +1,126 @@
-
-body {
-    /* feel free to update these css variables for a quick theme */
-    
-    --color1: white;
-    --color2: white;
-    --color3: white;
-    --color4: white;
-    --color5: white;
-    
-    /* https://coolors.co/generate and click export -> scss to get the colors to copy and paste below*/
-        
-    /* --color1: hsla(349, 69%, 76%, 1);
-    --color2: hsla(207, 67%, 44%, 1);
-    --color3: hsla(200, 61%, 56%, 1);
-    --color4: hsla(187, 41%, 94%, 1);
-    --color5: hsla(170, 28%, 95%, 1); */
-
-    /* --color1: hsla(45, 86%, 83%, 1);
-    --color2: hsla(135, 65%, 98%, 1);
-    --color3: hsla(315, 37%, 86%, 1);
-    --color4: hsla(45, 73%, 98%, 1);
-    --color5: hsla(224, 40%, 79%, 1); */
-    
-    --header-height: 80px;
-    --shadow: 0px 10px 20px -12px rgba(0,0,0,0.45);
-    --gutter: 30px;
-    --footer-height: 25px;
-    
-    font-family: 'Titillium Web', sans-serif;
-    background-color: var(--color2);
-}
-
 main {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin-bottom: calc(var(--footer-height));
+    align-content: center;
+    border: 2px solid black;
+    min-height: 100vh;
+    width: 100vw;
 }
 
 section {
-    background-color: var(--color5);
-    max-width: 80%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding-top: var(--gutter);
-    padding-bottom: var(--gutter);
-    margin-top: var(--gutter);
-    margin-bottom: var(--gutter);
-    border: solid 2px var(--color1);
+    align-content: center;
 }
 
-header {
+
+div {
     display: flex;
-    justify-content: flex-end;
-    background-color: var(--color3);
-    height: var(--header-height);
-    box-shadow: var(--shadow);
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
 
-
-h2 {
-    font-size: 1.8rem;
-    font-weight: bold;
+.flex-row {
+    display: flex;
+    flex-direction: row;
 }
 
-.gutter-right {
-    margin-right: 20px;
+.flex-column {
+    display: flex;
+    flex-direction: column;
 }
 
-header img {
-    height: var(--header-height);
+.largeColumn {
+    width: 30vw;
+}
+
+.smallColumn {
+    width: 30vw;
+}
+
+.defeated {
+    width: 90vw;
+    min-height: 10vh;
+    background-color: bisque;
+    border-radius: 20px;
+}
+
+.gameplay {
+    min-height: 60vh;
+}
+
+.health {
+    min-height: 20vh;
+    width: 90vw;
+}
+
+.container {
+    width: 90vw;
+}
+
+.user {
+    background-color: lightgreen;
+    border-radius: 20px;
+}
+
+.cpu {
+    background-color: lightcoral;
+    border-radius: 20px;
+}
+
+.input {
+    background-color: lightcyan;
+    border-radius: 20px;
+}
+
+.flex-space {
+    justify-content: space-around;
+}
+
+.nav {
+    height: 15vh;
+}
+
+select {
+    max-width: 70%;
+}
+
+img {
+    max-height: 40vh;
+}
+
+.flex-start {
+    align-content: flex-start;
+}
+
+.opponentCard {
+    flex-direction: row;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: white;
+    align-content: flex-start;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 20vw;
+    margin: 15px;
 }
 
 p {
-    margin: var(--gutter);
+    margin: 8px;
+    padding: 0px;
 }
-  
-footer {
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    height: var(--footer-height);
-    display: flex;
-    justify-content: flex-end;
-    background-color: var(--color3);
-    box-shadow: var(--shadow);
+
+.smallImg {
+    max-height: 10vh;
+    max-width: 10vw;
+    justify-content: center;
 }

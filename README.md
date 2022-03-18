@@ -29,7 +29,7 @@ Additional considerations:
 ![wireframe](assets/wireframe.png)
 
 To Dos:
-1. HTML
+1. HTML shell - done
   - outline below
 2. eventListeners
   - CPU input

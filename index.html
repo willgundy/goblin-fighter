@@ -13,18 +13,54 @@
 </head>
 
 <body>
-    <header>
-        <div class="gutter-right logo">
-            <img src="./assets/big-logo.png" />
-        </div>
-    </header>
     <main>
-
+        <div class="container health">
+            <section class="largeColumn nav user">
+                <h3>User Health: 100❤️</h3>
+            </section>
+            <section class="largeColumn nav cpu">
+                <h3>CPU Health: ❤️</h3>
+            </section>
+            <section class="smallColumn nav input flex-row flex-space">
+                <h4>Add New CPU</h4>
+                <form action="" class="flex-column">
+                    <label for="characterName">
+                        Name:
+                        <input type="text" name="characterName">
+                    </label>
+                    <label for="characterSelect">
+                        Type:
+                        <select name="characterSelect" id="characterSelect">
+                            <option value="default">Select a Type</option>
+                        </select>
+                    </label>
+                    <button id="createCharacterBtn">Create!</button>
+                </form>
+            </section>
+        </div>
+        <div class="container gameplay">
+            <section class="largeColumn gameplay user flex-column flex-space">
+                <h3>Ken</h3>
+                <img src="assets/ken-large.png" alt="ken">
+            </section>
+            <section class="largeColumn gameplay cpu flex-column flex-space">
+                <h3>M Bison</h3>
+                <img src="assets/mbison.png" alt="mbison">
+            </section>
+            <section class="smallColumn gameplay input flex-start">
+                <div class="opponentCard">
+                    <div class="flex-column flex-start">
+                        <p>Name: <span>M Bison</span></p> 
+                        <p>Health: <span>20❤️</span></p> 
+                    </div>
+                    <img src="assets/mbison-small.png" alt="mbison" class="smallImg">
+                </div>
+            </section>
+        </div>
+        <div class="defeated">
+            <h3>Defeated Street Fighters</h3>
+        </div>
     </main>
-    <footer>
-        <div class="copy gutter-right">&copy; 2021 Alchemy Code Lab</div>
-    </footer>
-
     <script type="module" src="./app.js"></script>
 </body>
 
