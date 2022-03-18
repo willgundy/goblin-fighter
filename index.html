@@ -12,17 +12,17 @@
     <title>Document</title>
 </head>
 
-<body>
+<body style="background-image: url('assets/templeHideout.png');">
     <main>
         <img src="assets/game-over.png" alt="" class="hidden game-over">
         <div class="container health">
             <section class="largeColumn nav user">
-                <h3 id="userHealth">Health: 10❤️</h3>
+                <h3 id="userHealth" class="gameplay-text">Health: 10❤️</h3>
             </section>
             <section class="largeColumn nav cpu">
-                <h3 id="cpuHealth"></h3>
+                <h3 id="cpuHealth" class="gameplay-text"></h3>
             </section>
-            <section class="smallColumn nav input flex-row flex-space">
+            <section class="smallColumn nav input flex-row flex-space gameplay-text">
                 <h4>Challenge Street Fighter</h4>
                 <div class="column-space smallColumn">
                     <form action="" class="flex-column">
@@ -43,14 +43,14 @@
         </div>
         <div class="container gameplay">
             <section class="largeColumn gameplay user flex-column flex-space">
-                <h3 id="userName">Ken</h3>
+                <h3 id="userName" class="gameplay-text">Ken</h3>
+                <h4 id="userGameplayNotification" class="gameplay-text"></h4>
                 <img src="assets/ken-large.png" alt="ken" id="userImage" class="gameplayImage">
-                <h4 id="userGameplayNotification"></h4>
             </section>
             <section class="largeColumn gameplay cpu flex-column flex-space">
-                <h3 id="cpuName"></h3>
+                <h3 id="cpuName" class="gameplay-text"></h3>
+                <h4 id="cpuGameplayNotification" class="gameplay-text"></h4>
                 <img src="" alt="" id="cpuImage" class="gameplayImage">
-                <h4 id="cpuGameplayNotification"></h4>
             </section>
             <section id="opponentSection" class="smallColumn gameplay input flex-start">
                 <div class="opponentCard activeOpponent hidden">

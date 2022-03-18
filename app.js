@@ -53,11 +53,11 @@ let characterList = [
 
 let stadiumList = [
     { id: 0,
-        name: 'Spa',
-        path: 'assets/spa.png' },
-    { id: 1,
         name: 'Temple Hideout',
         path: 'assets/templeHideout.png' },
+    { id: 1,
+        name: 'Spa',
+        path: 'assets/spa.png' },
     { id: 2,
         name: 'Taiping District',
         path: 'assets/taipingDistrict.png' },
@@ -113,7 +113,6 @@ function displayStadiumList() {
 
 stadiumSelectEl.addEventListener('change', () => {
     body.style.backgroundImage = `url('${stadiumSelectEl.value}')`;
-    console.log(`url('${stadiumSelectEl.value}')`);
 });
 
 function displayOpponentList() {
@@ -217,6 +216,7 @@ function hideGameplay() {
 
 function unhideGameOver() {
     gameOverImage.classList.remove('hidden');
+    body.style.backgroundImage = `url('assets/game-over.png')`;
 }
 
 function displayDefeatedOpponentsandCount() {
