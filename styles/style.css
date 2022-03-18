@@ -98,6 +98,10 @@ img {
     max-height: 40vh;
 }
 
+#userImage {
+    transform: scaleX(-1);
+}
+
 .flex-start {
     align-content: flex-start;
 }

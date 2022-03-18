@@ -1,3 +1,5 @@
+import { getHealthText } from './app.js';
+
 export function renderOpponentCard(opponent) {
     const opponentCardDiv = document.createElement('div');
     opponentCardDiv.classList.add('opponentCard');
@@ -9,7 +11,7 @@ export function renderOpponentCard(opponent) {
     opponentName.textContent = `Name: ${opponent.name}`;
 
     const opponentHealth = document.createElement('p');
-    opponentHealth.textContent = `Health: ${opponent.health}❤️`;
+    opponentHealth.textContent = getHealthText(opponent.health);
 
     const opponentImage = document.createElement('img');
     opponentImage.src = `assets/${opponent.shortname}-small.png`;

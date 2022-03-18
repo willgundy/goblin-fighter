@@ -15,6 +15,8 @@ const characterSelectEl = document.querySelector('#characterSelect');
 let userHealth = 10;
 let cpuHealth = 3;
 
+let audio = new Audio('assets/playerSelect.mp3');
+
 let characterList = [
     { id: 0,
         name: 'E Honda',
@@ -85,6 +87,7 @@ function displayOpponentList() {
                 cpuImageEl.id = opponent.id;
                 cpuHealthEl.textContent = `Health: ${opponent.health}❤️`;
                 cpuHealth = opponent.health;
+                audio.play();
             });
 
             opponentSectionEl.append(opponentOptionEl);
@@ -97,7 +100,10 @@ function displayOpponentList() {
             cpuImageEl.src = '';
             cpuImageEl.id = '';
             cpuHealthEl.textContent = '';
-            const defeatedOpponent = opponentList.splice(opponent.id, 1);
+            const index = opponentList.findIndex(opponentList => {
+                return opponentList.id === Number(opponent.id);
+            });
+            const defeatedOpponent = opponentList.splice(index, 1);
             defeatedOpponents.push(defeatedOpponent);
             defeatedOpponentCount++;
             defeatedSectionEl.append(opponentOptionEl);
@@ -157,7 +163,12 @@ function createOpponentObject(opponentName, opponentShortName) {
     };
 }
 
-// set event listeners 
-  // get user input
-  // use user input to update state 
-  // update DOM to reflect the new state
+export function getHealthText(health) {
+    if (health >= 3) {
+        return `Health: ${health}❤️`;
+    } else if (health >= 1) {
+        return `Health: ${health}💔`;
+    } else {
+        return `Health: ${health}🖤`;
+    }
+}
