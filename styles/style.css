@@ -62,7 +62,7 @@ div {
 }
 
 .gameplay {
-    min-height: 70vh;
+    min-height: 65vh;
 }
 
 .health {
@@ -194,4 +194,9 @@ h4 {
 
 .defeated-gameover {
     margin-top: 100vh;
+}
+
+#opponentSection {
+    overflow-x: auto;
+    max-height: 60vh;
 }
