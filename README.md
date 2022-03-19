@@ -24,3 +24,52 @@ Additional considerations:
   - What needs to live in a persistence layer?
 - Is there some state we need to initialize?
 - Ask: should any of this work be abstracted into functions? (i.e., is the work complicated? can it be resused?)
+
+
+![wireframe](assets/wireframe.png)
+
+To Dos:
+1. HTML shell - done
+  - outline below
+2. eventListeners
+  - CPU input
+  - img click to hit goblin
+  - goblin divs render an image to fight
+3. Utility Functions
+  - render active cpus
+  - render defeated cpus
+4. DOM Updates
+  - CPU image
+  - User Image
+  - CPU health
+  - User health
+
+HTML:
+1. Div - Inputs and Health
+  1. Section
+    - h4 user health
+  2. Section
+    - h4 cpu health
+  3. Section
+    - form
+      - input
+      - select
+      - button
+2. Div - Game Action
+  1. Section - user info
+    - h3 - user name
+    - img - cpu img
+  2. Section
+    - h3 - cpu name
+    - img - cpu img
+  3. Section
+    - Div - opponent card
+      - p - name
+      - p - health
+3. Div - defeated CPU
+  1. Div - opponent card
+    - p - name
+    - p - health
+
+
+Stretch Goals Below:

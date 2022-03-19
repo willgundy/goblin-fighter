@@ -9,64 +9,74 @@
     <link rel="stylesheet" href="./styles/reset.css">
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/home.css">
-    <title>Document</title>
+    <title>Street Fighter II</title>
 </head>
 
-<body>
-    <header>
-        <div class="gutter-right logo">
-            <img src="./assets/big-logo.png" />
-        </div>
-    </header>
+<body style="background-image: url('assets/templeHideout.png');">
     <main>
-        <section class="main-section">
-            <img class="main-logo" src="./assets/alchemy-logo.png" />
-            <h2>
-                Welcome to Alchemy Bootstrap!
-            </h2>
+        <div id="characterSelectScreen" class="flex-column">
+            <h1 class="gameplay-text">Select Your Fighter</h1>
+            <div id="characterCardDiv"></div>
+        </div>  
+        <div id="gameConsole" class="hidden">
+            <div class="container health">
+                <section class="largeColumn nav user">
+                    <h3 id="userHealth" class="gameplay-text">Health: 10❤️</h3>
+                </section>
+                <section class="largeColumn nav cpu">
+                    <h3 id="cpuHealth" class="gameplay-text"></h3>
+                </section>
+                <section class="smallColumn nav input flex-row flex-space gameplay-text">
+                    <h4>Challenge Street Fighter</h4>
+                    <div class="column-space smallColumn">
+                        <form action="" class="flex-column">
+                            <label for="characterSelect">
+                                Type:
+                                <select name="characterSelect" id="characterSelect">
+                                    <option value="default">Select a Type</option>
+                                </select>
+                            </label>
+                            <button id="createCharacterBtn">Create!</button>
+                        </form>
+                        <label for="stadiumSelect">
+                            Stadium: 
+                            <select name="stadiumSelect" id="stadiumSelect"></select>
+                        </label>
+                    </div>
+                </section>
+            </div>
+            <div class="container gameplay">
+                <section class="largeColumn gameplay user flex-column flex-space">
+                    <h3 id="userName" class="gameplay-text">Ken</h3>
+                    <h4 id="userGameplayNotification" class="gameplay-text"></h4>
+                    <img src="assets/ken-large.png" alt="ken" id="userImage" class="gameplayImage">
+                </section>
+                <section class="largeColumn gameplay cpu flex-column flex-space">
+                    <h3 id="cpuName" class="gameplay-text"></h3>
+                    <h4 id="cpuGameplayNotification" class="gameplay-text"></h4>
+                    <img src="" alt="" id="cpuImage" class="gameplayImage">
+                </section>
+                <section id="opponentSection" class="smallColumn gameplay input flex-start">
 
-            <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam repellendus similique consectetur
-                voluptas facilis molestiae voluptates nobis error sapiente, ad, ipsa vero non, sint eligendi? Eos
-                praesentium iusto magnam exercitationem.
-                Earum sunt voluptatibus molestias, sint voluptatum quos reiciendis. Id asperiores deleniti dolores
-                provident, eius, nostrum aperiam vel, optio qui illo corrupti in. Eum quam, est nemo porro sapiente
-                excepturi assumenda.
-                Rerum unde quidem maxime. Ullam, dolores labore molestias voluptatibus adipisci quod? Quaerat nihil
-                inventore molestiae assumenda, voluptates vel necessitatibus eligendi? Accusamus ratione eligendi
-                reprehenderit? Beatae incidunt molestias ea soluta nulla.
-                Fugiat quae soluta voluptate mollitia praesentium modi ex illo, autem assumenda, vel aliquam fugit
-                possimus dolorem esse corporis ipsa! Voluptatem sapiente error non, ea optio suscipit quasi maxime nobis
-                ex?
-                Et ipsa tenetur ullam ab nesciunt quas fugit velit impedit illum esse eligendi corporis culpa
-                praesentium aspernatur ex sint veniam quidem, doloribus corrupti hic vitae. Eum neque ducimus omnis
-                exercitationem?
-            </p>
-            <hr />
-            <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam repellendus similique consectetur
-                voluptas facilis molestiae voluptates nobis error sapiente, ad, ipsa vero non, sint eligendi? Eos
-                praesentium iusto magnam exercitationem.
-                Earum sunt voluptatibus molestias, sint voluptatum quos reiciendis. Id asperiores deleniti dolores
-                provident, eius, nostrum aperiam vel, optio qui illo corrupti in. Eum quam, est nemo porro sapiente
-                excepturi assumenda.
-                Rerum unde quidem maxime. Ullam, dolores labore molestias voluptatibus adipisci quod? Quaerat nihil
-                inventore molestiae assumenda, voluptates vel necessitatibus eligendi? Accusamus ratione eligendi
-                reprehenderit? Beatae incidunt molestias ea soluta nulla.
-                Fugiat quae soluta voluptate mollitia praesentium modi ex illo, autem assumenda, vel aliquam fugit
-                possimus dolorem esse corporis ipsa! Voluptatem sapiente error non, ea optio suscipit quasi maxime nobis
-                ex?
-                Et ipsa tenetur ullam ab nesciunt quas fugit velit impedit illum esse eligendi corporis culpa
-                praesentium aspernatur ex sint veniam quidem, doloribus corrupti hic vitae. Eum neque ducimus omnis
-                exercitationem?
-            </p>
-
-        </section>
+                </section>
+            </div>
+            <div class="defeated flex-column">
+                <h3 id="defeatedCount">Defeated Street Fighters</h3>
+                <div id="defeatedCards">
+    
+                </div>
+            </div>
+            <audio id="youAudio">
+                <source src="assets/You.mp3" type="audio/mp3">
+            </audio>
+            <audio id="loseAudio">
+                <source src="assets/Lose.mp3" type="audio/mp3">
+            </audio>
+            <audio id="winAudio">
+                <source src="assets/win.wav" type="audio/wav">
+            </audio>
+        </div>
     </main>
-    <footer>
-        <div class="copy gutter-right">&copy; 2021 Alchemy Code Lab</div>
-    </footer>
-
     <script type="module" src="./app.js"></script>
 </body>
 
